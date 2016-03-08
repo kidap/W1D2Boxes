@@ -12,9 +12,9 @@
 
 
 //Initialize properties
-- (id) init:(float) length width:(float)width height:(float) height{
+- (id) initWithDepth:(float) depth width:(float)width height:(float) height{
 
-  self.length = length;
+  self.depth = depth;
   self.width = width;
   self.height = height;
 
@@ -23,44 +23,36 @@
 
 // Get the volume of the Box
 -(float) calculateVolume{
-  return self.length * self.width * self.height;
+  return self.depth * self.width * self.height;
 }
 
 
 //Get how many boxes can fit in the Box instance
 - (float) canFitHowManyofThisBox:(Box *) newBox{
+  bool useVolume = true;
   
-  int tmpLength = 0;
-  int tmpWidth = 0;
-  int tmpHeight = 0;
+  //Use Volume
+  if (useVolume){
+    int howMuchVolumeCanFit = 0;
+    
+    howMuchVolumeCanFit = [self calculateVolume] / [newBox calculateVolume];
+    
+    return howMuchVolumeCanFit;
   
-  //Compare the length, width and height to know how many of the smaller boxes would fit based on the dimensions
-  tmpLength = self.length / newBox.length;
-  tmpWidth = self.width / newBox.width;
-  tmpHeight = self.height / newBox.height;
+    
+  //Use dimensions
+  } else {
+    int tmpDepth = 0;
+    int tmpWidth = 0;
+    int tmpHeight = 0;
   
-  // Return the smallest number of boxes between the 3
-  return [self getSmallestNumberWithLength:tmpLength forWidth:tmpWidth forHeight:tmpHeight ];
-}
-
-// Returns the smallest number between 3 input numbers
-- (int) getSmallestNumberWithLength:(int) inpLength forWidth:(int)inpWidth forHeight:(int)inpHeight{
-
-  int lowestNummber = 0;
- 
-  if (inpLength < inpWidth){
-    lowestNummber = inpLength;
-  } else{
-    lowestNummber = inpWidth;
+    //Compare the depth, width and height to know how many of the smaller boxes would fit based on the dimensions
+    tmpDepth = self.depth / newBox.depth;
+    tmpWidth = self.width / newBox.width;
+    tmpHeight = self.height / newBox.height;
+  
+    // Return the smallest number of boxes between the 3
+    return  tmpDepth * tmpWidth * tmpHeight;
   }
-  
-  if (lowestNummber < inpHeight){
-    lowestNummber = lowestNummber;
-  } else{
-    lowestNummber = inpHeight;
-  }
-
-  return lowestNummber;
 }
-
 @end

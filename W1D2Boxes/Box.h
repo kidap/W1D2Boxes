@@ -11,10 +11,10 @@
 @interface Box : NSObject
 @property (nonatomic) float height;
 @property (nonatomic) float width;
-@property (nonatomic) float length;
+@property (nonatomic) float depth;
 
 
-- (id) init:(float) length width:(float)width height:(float) height;
+- (id) initWithDepth:(float) depth width:(float)width height:(float) height;
 - (float) calculateVolume;
 - (float) canFitHowManyofThisBox:(Box *) ofThisBox;
 @end
