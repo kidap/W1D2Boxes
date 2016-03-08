@@ -16,7 +16,7 @@ int main(int argc, const char * argv[]) {
     Box *largeBox = [[Box alloc] initWithDepth:3 width:3 height:3];
     
     //Create Box #2
-    Box *smallerBox = [[Box alloc] initWithDepth:1 width:1 height:1];
+    Box *smallerBox = [[Box alloc] initWithDepth:1 width:2 height:3];
     
     //Display the volume of Box #1
     NSLog(@"The volume of Box #1 is %.2f", [largeBox calculateVolume]);
