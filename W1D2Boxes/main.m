@@ -12,12 +12,19 @@
 int main(int argc, const char * argv[]) {
   @autoreleasepool {
     
+    //Create Box #1
     Box *largeBox = [[Box alloc] init:10 width:10 height:10];
     
-    Box *smallerBox = [[Box alloc] init:2 width:2 height:2.6];
+    //Create Box #2
+    Box *smallerBox = [[Box alloc] init:2 width:2 height:3];
     
-    NSLog(@"You can fit %.0f small boxes in the larger box", [largeBox canFitHowManyofThisBox:smallerBox]);
-    
+    //Check how many Box #2 can fit in Box #1
+    float numberofBoxesThatCanFit = [largeBox canFitHowManyofThisBox:smallerBox];
+    if (numberofBoxesThatCanFit > 0){
+      NSLog(@"You can fit %.0f small boxes in the larger box", numberofBoxesThatCanFit);
+    } else {
+      NSLog(@"First box is smaller than the second box");
+    }
     
   }
     return 0;
